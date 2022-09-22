@@ -1,0 +1,13 @@
+<div id="update-content">
+    
+    <% if current_user.role != 'admin'%> 
+        <center>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Create New Post
+            </button>
+        </center>
+    <%= render 'posts/new_post'%>
+    <%end%>
+    <%= render 'posts/all_posts'%>
+
+</div>

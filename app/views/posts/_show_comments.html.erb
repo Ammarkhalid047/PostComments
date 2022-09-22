@@ -1,0 +1,38 @@
+<%y=0%>
+<div class="container" id="show_comments">
+<h2>Comments</h2>
+<% @post.comments.each do |comment| %>
+    <% 
+    y = y+1
+    %>
+  <p>
+    <strong>Commenter:</strong>
+    <%= comment.user.email %>
+  </p>
+
+  <p>
+    <strong>Comment:</strong>
+    <%= comment.description %>  
+  </p>
+
+  <p>
+    <strong>Rating:</strong>
+    <div id="rateYo<%=y%>"></div> 
+  </p>
+  
+    <%if current_user == comment.user%>
+    <%= link_to "Destroy", [comment.post, comment], method: :delete, data: {
+                  confirm: "Are you sure?"
+                }, :remote => true, :class => 'delete_comment' %>
+  </p>
+    <%end%>
+  <script>
+  $("#rateYo"+ <%= y %> +"").rateYo({
+    rating: <%= comment.rating %>
+    
+  });
+  $ ('#rateYo'+ <%= y %> +"").attr('data-rateyo-read-only','true');
+  
+  </script> 
+<% end %>
+</div>

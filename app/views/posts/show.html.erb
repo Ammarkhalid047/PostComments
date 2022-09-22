@@ -1,0 +1,77 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <h4 class="mt-4 mb-4 display-4">Details</h4>
+    </div>
+
+    
+    
+    <div class="row justify-content-center" id="show_details">
+    <%=render 'show_details'%>
+    </div>
+
+<% if can? :update, @post%>
+
+      <center>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Edit Post
+      </button>
+      </center>
+
+<%end%>
+<!-- Modal -->
+    <%= render 'edit_post'%>
+    <%=render 'show_comments'%>
+
+
+
+    <% if cannot? :update, @post%>
+    <div class="row justify-content-center">
+    <h2>Add a comment:</h2>
+    </div>
+    <%= form_for [@post, @post.comments.build], remote: true,  class: 'form-group' do |form| %>
+  <p>
+    <%= form.label :description%><br>
+    <%= form.text_area :description,  class: 'form-control', id: 'desc' %>
+  </p>
+  <p>
+    <%= form.label :rating%>
+    <div id="rateYo"></div>
+  </p>
+  <p>
+
+    <div id="comments" class='form-control btn-primary' style="width:200px; text-align:center; cursor:pointer"> submit </div>
+  </p>
+
+<%end%>
+<% end %>
+</div>
+
+<script>
+
+var x;
+
+$("#comments").click(function() {  
+  var ds = $('#desc').val() 
+    $.ajax({
+        url: `/posts/<%=params[:id]%>/comments?description=${ds}&rating=${x}`,
+        type: 'get',
+          // data: $("form").serialize() + "&rating="+ x + "",
+        dataType: "script",
+    });
+    
+});
+
+$(function () {
+ 
+  $("#rateYo").rateYo({
+    rating: 0 
+  });
+  $("#rateYo").rateYo()
+              .on("rateyo.set", function (e, data) {
+ 
+                  x = data.rating;
+              });
+ 
+});
+
+</script>

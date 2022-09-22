@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row justify-content-center">
+    <h4 class="mt-4 mb-4 display-4">Edit Post</h4>
+</div>
+
+
+<div class="row justify-content-center">
+
+
+    <%= form_for(@post) do |form| %>
+
+        <div class="form-group">
+            <%= form.label :title %>
+            <%= form.text_field :title, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+            <%= form.label :Description %>
+            <%= form.text_area :description, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+            <%= form.file_field :images, multiple:true, class: "form-control-file", id:"exampleFormControlFile1", style: "margin:10px;" %>
+        </div>
+        <div class="form-group">
+            <%= form.submit class: 'form-control btn-primary' %>
+        </div>
+
+    <% end %>
+
+
+</div>
+</div>

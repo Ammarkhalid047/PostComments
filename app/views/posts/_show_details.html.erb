@@ -1,0 +1,52 @@
+
+        <table class="table">
+            <tbody>
+            <tr>
+                    <th>Title:</th>
+                    <td><%= @post.title %></td>
+                </tr>
+            <% if(@post.images.present?) %>
+                
+                    <% for image in @post.images do %>
+                     <tr>
+                     <th></th>
+                    <td><%= image_tag image.url, style:"width:1000px;display:block;" %></td>
+                   </tr>
+                    <% end %>
+
+                
+                <tr>
+                    <th>Description:</th>
+                    <td><%= raw(@post.description) %></td>
+                </tr>
+                <tr>
+                    <th>Posted by:</th>
+                    <td><%= image_tag @post.user.image.url, style:"width:40px;border-radius:100px;margin-right:10px" %><%= @post.user.email%></td>
+                    <td></td>
+                </tr>
+                
+                
+               
+                    
+                
+                <%if @post.status != 'approved'%>
+                <tr>
+                <%if current_user.role == 'admin'%>
+                <th>Actions:</th>
+                <td style="text-align:center">
+                    <%= link_to 'Approve', approve_admin_path(@post), :class => 'btn-primary form-control' %>
+                </td>
+                <td style="text-align:center">
+                    <%= link_to "Reject", reject_admin_path(@post), class: 'form-control btn-primary ' %>
+                </td>
+                <%end%>
+                <%else%>
+                <%if current_user.role == 'admin'%>
+                <td> This post has been <%= @post.status %> </td>
+                </tr> 
+                <%end%>        
+                <% end %>
+                <%end%>
+                
+            </tbody>
+        </table>

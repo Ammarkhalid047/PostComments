@@ -1,0 +1,41 @@
+  <script>
+
+
+$("#users").click(function() {
+    let url = '<%=admin_index_path%>'    
+    $.ajax({
+        url: url,
+        type: "get",
+        data: "",
+        dataType: "script",
+    });
+});
+
+$("#approvals").click(function() {
+    let url = '<%=admin_path('approvals')%>'    
+    $.ajax({
+        url: url,
+        type: "get",
+        data: "",
+        dataType: "script",
+    });
+});
+
+$("#pending").click(function() {
+    let url = '<%=admin_pending_path%>'    
+    $.ajax({
+        url: url,
+        type: "get",
+        data: "",
+        dataType: "script",
+    });
+});
+
+
+
+
+
+
+
+      
+  </script> 

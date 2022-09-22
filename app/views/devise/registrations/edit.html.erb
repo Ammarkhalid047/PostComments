@@ -1,0 +1,176 @@
+<style>
+.card {
+    width: 350px;
+    background-color: #efefef;
+    border: none;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.image img {
+    transition: all 0.5s
+}
+
+.card:hover .image img {
+    transform: scale(1.5)
+}
+
+.btn {
+    height: 140px;
+    width: 140px;
+    border-radius: 50%
+}
+
+.name {
+    font-size: 22px;
+    font-weight: bold
+}
+
+.idd {
+    font-size: 14px;
+    font-weight: 600
+}
+
+.idd1 {
+    font-size: 12px
+}
+
+.number {
+    font-size: 22px;
+    font-weight: bold
+}
+
+.follow {
+    font-size: 12px;
+    font-weight: 500;
+    color: #444444
+}
+
+.btn1 {
+    height: 40px;
+    width: 150px;
+    border: none;
+    background-color: #000;
+    color: #aeaeae;
+    font-size: 15px
+}
+
+.text span {
+    font-size: 13px;
+    color: #545454;
+    font-weight: 500
+}
+
+.icons i {
+    font-size: 19px
+}
+
+hr .new1 {
+    border: 1px solid
+}
+
+.join {
+    font-size: 14px;
+    color: #a0a0a0;
+    font-weight: bold
+}
+
+.date {
+    background-color: #ccc
+}
+</style>
+
+<div class="container mt-4 mb-4 p-3 d-flex justify-content-center"> 
+<div class="card p-4">
+ <div class=" image d-flex flex-column justify-content-center align-items-center"> 
+ <button class="btn btn-secondary"><% if(resource.image.present?) %> 
+                    
+                    <%= image_tag resource.image.url, style:"height:100px; width:100px;" %>
+                    <% end %></button> 
+ <span class="name mt-3"><%=resource.name%></span> <span class="idd"><%=resource.email%></span> 
+ <div class="d-flex flex-row justify-content-center align-items-center gap-2"> 
+ <span class="idd1"><%=resource.age%> years</span> <span><i class="fa fa-copy"></i></span>
+  </div> 
+  <div class=" d-flex mt-2"> <button class="btn1 btn-dark"data-toggle="modal" data-target="#exampleModal">Edit Profile</button> 
+  </div><div class="gap-3 mt-3 icons d-flex flex-row justify-content-center align-items-center"> 
+   <span><i class="fa fa-twitter"></i></span> <span><i class="fa fa-facebook-f"></i></span>
+    <span><i class="fa fa-instagram"></i></span> <span><i class="fa fa-linkedin"></i></span>
+   </div> <div class=" px-2 rounded mt-4 date "> <span class="join">Joined at : <%=resource.created_at%></span> </div> </div> </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Profile</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="field">
+    Name : <%= f.text_field :name, class: 'form-control' %><br />
+    </div>
+   
+
+    <%= f.fields_for :addresses, resource.address , class: 'form-group'  do |address_subform| %>
+     
+      Country: <%=address_subform.text_field :country, class: 'form-control'%>
+      City: <%=address_subform.text_field :city, class: 'form-control'%>
+      Street: <%=address_subform.text_field :street, class: 'form-control'%>
+              
+    <%end%>
+   
+   
+   <div class="feild">
+   Age : <%= f.text_field :age, class: 'form-control' %><br />
+   </div>
+   <div class="field">
+   Images :<%= f.file_field :image, class: 'form-control-file', id:"exampleFormControlFile1", style: "margin:10px;" %>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
+    <% if @minimum_password_length %>
+      <br />
+      <em><%= @minimum_password_length %> characters minimum</em>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+    <%= f.password_field :current_password, autocomplete: "current-password", class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Update", class: 'form-control btn-primary ' %>
+  </div>
+<% end %>
+
+<h3>Cancel my account</h3>
+
+<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name),class: 'form-control btn-primary ',  data: { confirm: "Are you sure?" }, method: :delete %></p>
+</div>
+<%= link_to "Back", :back %>
+</div>
+  </div>
+</div>
