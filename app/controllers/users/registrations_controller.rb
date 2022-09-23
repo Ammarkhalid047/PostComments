@@ -17,7 +17,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
    UserMailer.user_registration_email(resource).deliver_now
    redirect_to root_path
    else 
-   render 'users/new'
+   redirect_to new_user_session_path
    end
   end
 

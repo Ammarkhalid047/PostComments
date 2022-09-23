@@ -32,7 +32,9 @@ gem 'rateyo-rails'
 
 gem 'ckeditor'
 
-gem 'cancancan'
+gem 'cancancan' 
+
+gem "letter_opener", group: :development
 
 
 # Use Active Storage variant
