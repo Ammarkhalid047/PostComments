@@ -13,7 +13,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
    @user = User.new(user_params)
-   if @user.save
+   if @user.save 
    UserMailer.user_registration_email(@user).deliver_now
    redirect_to root_path
    else 

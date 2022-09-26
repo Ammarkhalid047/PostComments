@@ -18,6 +18,16 @@ Rails.application.configure do
   host = 'https://postcomments-ammar.herokuapp.com'
   config.action_mailer.default_url_options = { host: host}
 
+  ActionMailer::Base.smtp_settings = {
+    :user_name => 'apikey', # This is the string literal 'apikey', NOT the ID of your API key
+    :password => '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', # This is the secret sendgrid API key which was issued during API key creation
+    :domain => host,
+    :address => 'smtp.sendgrid.net',
+    :port => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
+
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
   # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
   # config.require_master_key = true
