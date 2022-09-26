@@ -11,12 +11,14 @@ class Users::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
   def create
     @user = User.find_by_email(user_params[:email])
-    puts @user.status == 'active'
-    if @user.status == 'active'
-    super
-    else
-      redirect_to root_path
+    if @user != nil
+      if @user.status == 'active'
+        super
+        end
+      else
+        redirect_to root_path
     end
+    
   end
 
 
