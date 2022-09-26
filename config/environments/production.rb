@@ -11,14 +11,14 @@ Rails.application.configure do
   # and those relying on copy on write to perform better.
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
-
+  config.action_mailer.delivery_method = :smtp
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
   host = 'https://postcomments-ammar.herokuapp.com'
   config.action_mailer.default_url_options = { host: host}
 
-  ActionMailer::Base.smtp_settings = {
+  config.action_mailer.smtp_settings = {
     :user_name => 'apikey', # This is the string literal 'apikey', NOT the ID of your API key
     :password => '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', # This is the secret sendgrid API key which was issued during API key creation
     :domain => host,
