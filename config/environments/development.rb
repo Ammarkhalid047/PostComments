@@ -24,7 +24,7 @@ Rails.application.configure do
         port:                 587,
         domain:               'postcomments-ammar.herokuapp.com',
         user_name:            'ammar.khalid047@gmail.com',
-        password:             'xdsheubwvtqftjep',
+        password:             '',
         authentication:       'plain',
         enable_starttls_auto: true,
         open_timeout:         5,
