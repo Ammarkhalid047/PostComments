@@ -25,7 +25,8 @@
                     <td></td>
                     
                     <% end %>   
-                    <td><%= link_to 'Show', post_path(post.id) %></td> 
+                    <td data-turbo="false">
+                    <a href="<%= post_path(post.id) %>" data-turbolinks="false">Show</a></td> 
                     <td><%= link_to 'Delete',
                         post_path(post.id),
                         method: :delete,

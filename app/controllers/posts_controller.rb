@@ -51,7 +51,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to root_path }
+      format.html { redirect_to new_post_path }
       format.json { head :no_content }
       format.js   { render :layout => false }
    end
