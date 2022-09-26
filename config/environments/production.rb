@@ -22,6 +22,7 @@ Rails.application.configure do
     :user_name => 'apikey', # This is the string literal 'apikey', NOT the ID of your API key
     :password => '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', # This is the secret sendgrid API key which was issued during API key creation
     :domain => host,
+    :from => 'ammar.khalid047@gmail.com'
     :address => 'smtp.sendgrid.net',
     :port => 587,
     :authentication => :plain,
