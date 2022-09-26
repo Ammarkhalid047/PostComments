@@ -14,7 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
    @user = User.new(user_params)
    if @user.save
-   UserMailer.user_registration_email(resource).deliver_now
+   UserMailer.user_registration_email(@user).deliver_now
    redirect_to root_path
    else 
    redirect_to new_user_session_path
