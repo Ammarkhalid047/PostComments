@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-    default form: 'ammar047@localhost.com'
+    default form: 'muhammadahad6785@gmail.com'
 
     def user_registration_email( resource )
         @user = resource
