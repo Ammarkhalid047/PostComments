@@ -13,7 +13,7 @@
         <%= form_for :post, url: posts_path, remote: true,  class: 'form-group' do |f| %>
 
     Title : <%= f.text_field :title, class: 'form-control' %><br />
-    Title Image :<%= f.file_field :images, class: "form-control-file", id:"exampleFormControlFile1", style: "margin:10px;" %><br />
+    Title Image :<%= f.file_field :images,multiple:true, class: "form-control-file", id:"exampleFormControlFile1", style: "margin:10px;" %><br />
     Description : <%= f.cktext_area :description, id: 'text',  :class => 'ckeditor'%>
     
       
