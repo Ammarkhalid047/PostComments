@@ -27,14 +27,22 @@
 
   <body>
       <%=render 'layouts/navbar'%>
-    <%# <div class="row" style="background-color:#508bfc">
-      <div class="container">
-      <center> %>
-      <%# <p class="notice"><%= notice </p> %>
-       <%# <p class="alert"><%= alert </p> %>
-      <%# </center>
+    <div class="row" style="">
+      <div class="container" style="font-size: 20px; ">
+      <center> 
+      <% if notice %>
+        <div class="alert alert-info notice" role="alert">
+          <%= notice %>
+        </div>
+        <%end%>
+      <%if alert%>
+        <div class="alert alert-danger" role="alert">
+          <%= alert %>
+        </div>
+        <%end%>
+     </center>
       </div>
-    </div> %>
+    </div>
     <%= yield %>
   </body>
 
