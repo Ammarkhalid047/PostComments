@@ -16,6 +16,7 @@ class CommentsController < ApplicationController
          end
     end
     def create
+      
         @post = Post.find(params[:post_id])
         @comment = Comment.new(comment_params.merge(user_id: current_user.id, post_id: params[:post_id], rating: params[:rating]))
         if @post.user != current_user 

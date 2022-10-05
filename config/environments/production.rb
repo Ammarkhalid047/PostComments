@@ -11,10 +11,25 @@ Rails.application.configure do
   # and those relying on copy on write to perform better.
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
-
+  
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
+
+  config.action_mailer.delivery_method = :smtp
   config.action_controller.perform_caching = true
+  host = 'https://postcomments-ammar.herokuapp.com'
+  config.action_mailer.default_url_options = { host: host}
+
+  config.action_mailer.smtp_settings = {
+    :user_name => 'apikey', # This is the string literal 'apikey', NOT the ID of your API key
+    :password => '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', # This is the secret sendgrid API key which was issued during API key creation
+    :domain => host,
+    :address => 'smtp.sendgrid.net',
+    :port => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
+  config.action_mailer.raise_delivery_errors = true
 
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
   # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
@@ -62,7 +77,7 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "PostsCommentsApp_production"
 
-  config.action_mailer.perform_caching = false
+  # config.action_mailer.perform_caching = false
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

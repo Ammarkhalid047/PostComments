@@ -36,6 +36,13 @@ gem 'cancancan'
 
 gem "letter_opener", group: :development
 
+gem 'activeadmin'
+
+# gem 'country_select', '~> 6.0' T
+# This gem is used for adding dropdown for country select 
+
+#gem 'activeadmin-ckeditor', '~> 0.0.15'
+
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
