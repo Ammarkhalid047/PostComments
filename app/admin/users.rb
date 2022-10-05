@@ -57,16 +57,13 @@ ActiveAdmin.register User do
       def change_user
         @user = User.find(params[:id])
         if @user.status == 'inactive'
-           @user.update(status:'active')
-           UserMailer.user_activated(@user).deliver_now
-           redirect_to admin_users_path
-           flash.alert = "User Approved."
-        elsif @user.status == 'active'
-           @user.update(status: 'inactive')
-           UserMailer.user_inactivated(@user).deliver_now
-           redirect_to admin_users_path
-           flash.alert = "User Inactivated."
-        end
+          @user.update(status:'active')
+       elsif @user.status == 'active'
+          @user.update(status: 'inactive')
+       end
+       UserMailer.user_status(@user).deliver_now
+       redirect_to admin_users_path
+       flash.alert = "User Status Has changed!"
       end
       
     

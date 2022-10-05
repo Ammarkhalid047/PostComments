@@ -1,0 +1,12 @@
+<h1>Welcome to PostCommentsApp.com, <%= @user.name %></h1>
+  <p>
+    Your account status has changed to <%= @user.status%>
+    <%if @user.status == 'active'%>
+    your username is: <%= @user.email%>.<br>
+    <%end%>
+  </p>
+   <%if @user.status == 'active'%>
+<p>Thanks for joining and have a great day!</p>
+ <%elsif%>
+ <p>Your account will soon be activated again!</p>
+ <%end%>
